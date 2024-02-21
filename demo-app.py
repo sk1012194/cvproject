@@ -1,23 +1,20 @@
-import cv2
 import streamlit as st
+from streamlit_opencv_demo import st_cv_image
 import numpy as np
 from PIL import Image
-
+import cv2
 
 def brighten_image(image, amount):
     img_bright = cv2.convertScaleAbs(image, beta=amount)
     return img_bright
 
-
 def blur_image(image, amount):
     blur_img = cv2.GaussianBlur(image, (11, 11), amount)
     return blur_img
 
-
 def enhance_details(img):
     hdr = cv2.detailEnhance(img, sigma_s=12, sigma_r=0.15)
     return hdr
-
 
 def main_loop():
     st.title("OpenCV Demo App")
@@ -41,9 +38,8 @@ def main_loop():
     if apply_enhancement_filter:
         processed_image = enhance_details(processed_image)
 
-    st.text("Original Image vs Processed Image")
-    st.image([original_image, processed_image])
-
+    # Display the processed image using st_cv_image
+    st_cv_image(processed_image, channels="BGR")
 
 if __name__ == '__main__':
     main_loop()
