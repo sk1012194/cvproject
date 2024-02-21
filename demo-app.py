@@ -1,5 +1,4 @@
 import streamlit as st
-from streamlit_opencv_demo import st_cv_image
 import numpy as np
 from PIL import Image
 import cv2
@@ -38,8 +37,9 @@ def main_loop():
     if apply_enhancement_filter:
         processed_image = enhance_details(processed_image)
 
-    # Display the processed image using st_cv_image
-    st_cv_image(processed_image, channels="BGR")
+    # Display the processed image
+    st.image(processed_image, channels="BGR")
 
 if __name__ == '__main__':
     main_loop()
+
